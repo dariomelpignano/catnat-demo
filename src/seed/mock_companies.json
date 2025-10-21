@@ -1,0 +1,73 @@
+[
+  {
+    "piva": "01234567890",
+    "ragioneSociale": "Metallica SRL",
+    "indirizzo": "Via delle Industrie 45",
+    "cap": "20100",
+    "comune": "Milano",
+    "provincia": "MI",
+    "ateco": "25.11.00",
+    "atecoDescrizione": "Fabbricazione di strutture metalliche e parti di strutture",
+    "fatturatoStimato": 2500000,
+    "dipendentiStimati": 35
+  },
+  {
+    "piva": "09876543210",
+    "ragioneSociale": "Fashion Store SPA",
+    "indirizzo": "Corso Vittorio Emanuele 123",
+    "cap": "00186",
+    "comune": "Roma",
+    "provincia": "RM",
+    "ateco": "47.71.10",
+    "atecoDescrizione": "Commercio al dettaglio di confezioni per adulti",
+    "fatturatoStimato": 850000,
+    "dipendentiStimati": 12
+  },
+  {
+    "piva": "11223344556",
+    "ragioneSociale": "TechConsulting SRLS",
+    "indirizzo": "Via Torino 78",
+    "cap": "10121",
+    "comune": "Torino",
+    "provincia": "TO",
+    "ateco": "62.02.00",
+    "atecoDescrizione": "Consulenza nel settore delle tecnologie dell'informatica",
+    "fatturatoStimato": 450000,
+    "dipendentiStimati": 8
+  },
+  {
+    "piva": "55667788990",
+    "ragioneSociale": "Panificio Artigiano di Rossi Mario",
+    "indirizzo": "Piazza del Mercato 5",
+    "cap": "50122",
+    "comune": "Firenze",
+    "provincia": "FI",
+    "ateco": "10.71.10",
+    "atecoDescrizione": "Produzione di prodotti di panetteria freschi",
+    "dipendentiStimati": 4
+  },
+  {
+    "piva": "99887766554",
+    "ragioneSociale": "Logistica Express SRL",
+    "indirizzo": "Viale dell'Industria 200",
+    "cap": "40138",
+    "comune": "Bologna",
+    "provincia": "BO",
+    "ateco": "52.10.10",
+    "atecoDescrizione": "Magazzinaggio e custodia",
+    "fatturatoStimato": 3200000,
+    "dipendentiStimati": 45
+  },
+  {
+    "piva": "12312312399",
+    "ragioneSociale": "Hotel Bella Vista SRL",
+    "indirizzo": "Lungomare Caracciolo 88",
+    "cap": "80122",
+    "comune": "Napoli",
+    "provincia": "NA",
+    "ateco": "55.10.00",
+    "atecoDescrizione": "Alberghi",
+    "fatturatoStimato": 1800000,
+    "dipendentiStimati": 22
+  }
+]
