@@ -28,7 +28,7 @@ export class OSMAdapter implements IOSMAdapter {
 
       if (building.nodes && building.nodes.length > 0) {
         const nodes = data.elements.filter((el: any) => el.type === 'node');
-        const nodeMap = new Map(nodes.map((n: any) => [n.id, n]));
+        const nodeMap = new Map<number, any>(nodes.map((n: any) => [n.id, n]));
 
         const coordinates = building.nodes
           .map((nodeId: number) => {

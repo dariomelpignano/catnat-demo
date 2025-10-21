@@ -16,7 +16,6 @@ export function MapView({ lat, lng, polygonGeoJSON }: MapViewProps) {
     // Lazy load MapLibre GL to avoid SSR issues
     const loadMap = async () => {
       const maplibregl = (await import('maplibre-gl')).default;
-      await import('maplibre-gl/dist/maplibre-gl.css');
 
       if (!mapContainerRef.current) return;
 
