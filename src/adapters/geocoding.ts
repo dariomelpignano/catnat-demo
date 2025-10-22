@@ -1,7 +1,5 @@
 import { IGeocodingAdapter, GeoData } from '@/lib/types';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { getPrismaClient } from '@/lib/prisma';
 
 export class GoogleGeocoderAdapter implements IGeocodingAdapter {
   private apiKey: string;
@@ -49,6 +47,9 @@ export class GoogleGeocoderAdapter implements IGeocodingAdapter {
   }
 
   private async getFromCache(address: string): Promise<GeoData | null> {
+    const prisma = getPrismaClient();
+    if (!prisma) return null; // Cache disabled if no DATABASE_URL
+
     const cached = await prisma.geocodingCache.findUnique({
       where: { address },
     });
@@ -66,6 +67,9 @@ export class GoogleGeocoderAdapter implements IGeocodingAdapter {
   }
 
   private async saveToCache(address: string, geoData: GeoData): Promise<void> {
+    const prisma = getPrismaClient();
+    if (!prisma) return; // Skip cache if no DATABASE_URL
+
     await prisma.geocodingCache.upsert({
       where: { address },
       create: {
@@ -139,6 +143,9 @@ export class NominatimGeocoderAdapter implements IGeocodingAdapter {
   }
 
   private async getFromCache(address: string): Promise<GeoData | null> {
+    const prisma = getPrismaClient();
+    if (!prisma) return null; // Cache disabled if no DATABASE_URL
+
     const cached = await prisma.geocodingCache.findUnique({
       where: { address },
     });
@@ -156,6 +163,9 @@ export class NominatimGeocoderAdapter implements IGeocodingAdapter {
   }
 
   private async saveToCache(address: string, geoData: GeoData): Promise<void> {
+    const prisma = getPrismaClient();
+    if (!prisma) return; // Skip cache if no DATABASE_URL
+
     await prisma.geocodingCache.upsert({
       where: { address },
       create: {

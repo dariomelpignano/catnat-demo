@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import { getPrismaClient } from '@/lib/prisma';
 import PQueue from 'p-queue';
 import crypto from 'crypto';
 
-const prisma = new PrismaClient();
 const queue = new PQueue({ concurrency: 1, interval: 1000, intervalCap: 1 });
 
 const OVERPASS_ENDPOINT = process.env.OVERPASS_ENDPOINT || 'https://overpass-api.de/api/interpreter';
@@ -13,6 +12,9 @@ function hashQuery(query: string): string {
 }
 
 async function getCachedResponse(queryHash: string): Promise<any | null> {
+  const prisma = getPrismaClient();
+  if (!prisma) return null; // Cache disabled if no DATABASE_URL
+
   const cached = await prisma.overpassCache.findUnique({
     where: { queryHash },
   });
@@ -25,6 +27,9 @@ async function getCachedResponse(queryHash: string): Promise<any | null> {
 }
 
 async function setCachedResponse(queryHash: string, query: string, response: any): Promise<void> {
+  const prisma = getPrismaClient();
+  if (!prisma) return; // Skip cache if no DATABASE_URL
+
   const expiresAt = new Date();
   expiresAt.setHours(expiresAt.getHours() + CACHE_TTL_HOURS);
 

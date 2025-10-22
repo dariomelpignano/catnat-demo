@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import { getPrismaClient } from '@/lib/prisma';
 import { SourceInfo } from './types';
-
-const prisma = new PrismaClient();
 
 export async function logAudit(
   piva: string,
@@ -10,6 +8,9 @@ export async function logAudit(
   sourceInfo: SourceInfo,
   requestId?: string
 ): Promise<void> {
+  const prisma = getPrismaClient();
+  if (!prisma) return; // Skip audit if no DATABASE_URL
+
   await prisma.auditLog.create({
     data: {
       piva,
@@ -29,6 +30,9 @@ export async function logMultipleAudits(
   fields: Record<string, { value: any; sourceInfo: SourceInfo }>,
   requestId?: string
 ): Promise<void> {
+  const prisma = getPrismaClient();
+  if (!prisma) return; // Skip audit if no DATABASE_URL
+
   const entries = Object.entries(fields).map(([field, data]) => ({
     piva,
     field,
@@ -46,6 +50,9 @@ export async function logMultipleAudits(
 }
 
 export async function getAuditTrail(piva: string) {
+  const prisma = getPrismaClient();
+  if (!prisma) return []; // Return empty array if no DATABASE_URL
+
   return await prisma.auditLog.findMany({
     where: { piva },
     orderBy: { timestamp: 'desc' },
