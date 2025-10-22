@@ -24,7 +24,7 @@ export function CompanyForm() {
       const response = await fetch('/api/prefill', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ piva }),
+        body: JSON.stringify({ piva: piva.trim() }),
       });
 
       if (!response.ok) {

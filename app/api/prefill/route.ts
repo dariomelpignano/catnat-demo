@@ -13,11 +13,14 @@ import { randomUUID } from 'crypto';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { piva } = body;
+    const { piva: rawPiva } = body;
 
-    if (!piva) {
+    if (!rawPiva) {
       return NextResponse.json({ error: 'P.IVA is required' }, { status: 400 });
     }
+
+    // Trim whitespace from P.IVA
+    const piva = rawPiva.trim();
 
     const auditId = randomUUID();
 
